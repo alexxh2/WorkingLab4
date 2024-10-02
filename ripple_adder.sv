@@ -10,26 +10,10 @@ module ripple_adder (
 	input  logic         cin,
 	output logic  [7:0] s,
 
-	//stays lowercase
 	output logic         cout,
 	output logic 		X
 );
 
-
-	/* TODO
-		*
-		* Insert code here to implement a ripple adder.
-		* Your code should be completly combinational (don't use always_ff or always_latch).
-		* Feel free to create sub-modules or other files. */
-
-		/*
-	module sub (
-	input  logic  [8:0] A, 
-    input  logic  [8:0] B,
-	
-	output logic  [8:0] Diff,
-);
-*/	
 	logic [7:0] newB;
 
     always_comb begin
@@ -40,11 +24,7 @@ module ripple_adder (
         end
     end
 
-
-
-	
 	logic  c1, c2, c3, c4, c5, c6, c7, c8;
-	//(input a, input b, Cin, S, Cout)
 	full_adder FA0(.x(a[0]), .y(newB[0]), .z(cin), .S(s[0]), .c(c1));
 	full_adder FA1(.x(a[1]), .y(newB[1]), .z(c1), .S(s[1]), .c(c2));	
 	full_adder FA2(.x(a[2]), .y(newB[2]), .z(c2), .S(s[2]), .c(c3));

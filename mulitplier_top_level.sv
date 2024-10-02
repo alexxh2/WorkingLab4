@@ -28,19 +28,12 @@ module multiplier_toplevel   (
     begin
         Aval <= AB_Out[15:8];
         Bval <= AB_Out[7:0];
-        /*
-        if (Reset_Load_ClearSH | (Executing == 0))
-            Xval <= 1'b0;
-        else if (Yes_Add | Yes_Sub)
-            Xval <= X;
-        */
         if (Reset_Load_ClearSH)
             Xval <= 1'b0;
         else if (Executing == 0 & Shift_En == 0 & Yes_Add == 0 & Yes_Sub==0 & Load_B ==0)
             Xval <= 1'b0;
         else if (Yes_Add | Yes_Sub)
             Xval <= X;
-        
     end
 
 	ripple_adder adder (
@@ -55,7 +48,6 @@ module multiplier_toplevel   (
 	
 	register_unit reg_unit (
 		.Clk        (Clk),
-		//.Reset      (Load_B | (Executing == 0)),
 		.Reset      ((Load_B) |(Executing == 0 & Shift_En == 0 & Yes_Add == 0 & Yes_Sub==0 & Load_B ==0)),
 		.Shift_En   (Shift_En),
 		.Yes_Add    (Yes_Add),
@@ -72,7 +64,6 @@ module multiplier_toplevel   (
 		.Clk        (Clk),
 		.Reset      (Reset_Load_ClearSH),
 		.Execute    (RunSH),
-		//.Execute    (Run),
 		.Mval       (AB_Out[0]),
 		.Executing  (Executing),
 		.Shift_En   (Shift_En),

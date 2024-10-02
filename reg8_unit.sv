@@ -18,19 +18,15 @@ module register_unit (
 	reg_8 reg_AB (
 		.Clk            (Clk), 
 		.Reset          (Reset),
-
-		//.Load           (Ld_X),
 		.Yes_Add		(Yes_Add),
 		.Yes_Sub		(Yes_Sub),
 		.Load_B			(Load_B),
 		.Shift_En       (Shift_En),
 		.A_in              (A_in),
 		.B_in              (B_in),
-
-
 		.X				(X),
 		.Data_Out       (AB_Out),
-		.Mval			(Mval) //post-shift
+		.Mval			(Mval)
 	);
 
 	
